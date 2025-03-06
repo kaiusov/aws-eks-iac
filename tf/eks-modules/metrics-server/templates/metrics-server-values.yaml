@@ -1,0 +1,23 @@
+# replicas: 1
+# defaultArgs:
+#   - --kubelet-preferred-address-types=InternalIP,ExternalIP,Hostname
+#   - --kubelet-use-node-status-port
+#   - --metric-resolution=15s
+#   - --kubelet-insecure-tls
+# metrics:
+#   enabled: true
+# serviceMonitor:
+#   enabled: false
+
+replicas: 1
+defaultArgs:
+  - --cert-dir=/tmp  # Ensure certs are stored in a writable directory
+  - --kubelet-preferred-address-types=InternalIP,ExternalIP,Hostname
+  - --kubelet-use-node-status-port
+  - --metric-resolution=10s
+  - --kubelet-insecure-tls
+  - --authorization-always-allow-paths=/metrics
+metrics:
+  enabled: true
+serviceMonitor:
+  enabled: false
