@@ -21,7 +21,7 @@ autoscaling:
   targetCPUUtilizationPercentage: 50
   behavior:
   scaleDown:
-    stabilizationWindowSeconds: 30  # Reduced cooldown to allow faster demo (default is 300s)
+    stabilizationWindowSeconds: 30  # Reduced cooldown to allow faster demo experience (default is 300s)
     policies:
       - type: Percent
         value: 50

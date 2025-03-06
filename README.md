@@ -80,11 +80,11 @@ cd aws-eks-iac/tg/prod/
 ```
 change directory to root module of prod env terragrunt configuration (or just aws-eks-iac/tg since we only have 1 env-stack)
 ```bash
-terragrunt run-all apply --auto-approve 
+terragrunt run-all apply --auto-approve --non-interactive
 ```
 run terragrunt to create state bucket and dynomodb lock table deploy vpc, eks cluster (and login your machine to eks kube), metrics server and nginx-server helm releases
 
---auto-approve and --terragrunt-non-interactive - to skip confirmations regarding stack creation, state bucket + dynamodb creation and apply confirmations of each module. Avoid using on real prod envs.
+--auto-approve and --non-interactive - to skip confirmations regarding stack creation, state bucket + dynamodb creation and apply confirmations of each module. Avoid using on real prod envs.
 
 
 stack creation should take from 20 to 40 minutes depending on eks cluster creation speed by AWS
@@ -130,7 +130,7 @@ check that the hpa has metrics (confirms that the metrics server is working) and
 ```bash
 kubectl get nodes 
 ```
-check the number of nodes to later compare and make sure that node scaling is working
+check the number of nodes to later compare and make sure that node scaling is working (should be just 1 at this point)
 ```bash
 kubectl run load-generator --image=busybox -- /bin/sh -c "while true; do wget -q -O- http://nginx-server; done" 
 ```
@@ -169,7 +169,7 @@ gradually nodes will automatically scale down to 1 too
 
 After pod and node autoscaling confirmed to be working delete the whole infrastructure with
 ```bash
-terragrunt run-all destroy --auto-approve --terragrunt-non-interactive
+terragrunt run-all destroy --auto-approve --non-interactive
 ```
 clean up the s3 state bucket and dynamodb table
 ```bash
@@ -222,8 +222,9 @@ clean up the s3 state bucket and dynamodb table
 - implement disaster recovery plan and backups according to budget and requirements
 
 # Misc
-- Prod can't be prod unless there is a dev environment set up for development and testing. This repo would allow to spin up an identical dev environment with minimum effort.
-- I see that terragrunt changed the root terragrunt.hcl to root.hcl. This is something I would later address.
+- prod can't be prod unless there is a dev environment set up for development and testing. this repo would allow to spin up an identical dev environment with minimum effort.
+- re-check all the versions of every provider and tool, check all the compatibilities and version constraints and lock them and also commit .terraform.lock.hcl files in all the tg module folders of the repo.
+- terragrunt changed the root terragrunt.hcl to root.hcl. this is something I would later address.
 ```bash
 WARN   [prod/eks] Using `terragrunt.hcl` as the root of Terragrunt configurations is an anti-pattern, and no longer recommended. In a future version of Terragrunt, this will result in an error. You are advised to use a differently named file like `root.hcl` instead. For more information, see https://terragrunt.gruntwork.io/docs/migrate/migrating-from-root-terragrunt-hcl
   ```
