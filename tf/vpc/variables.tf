@@ -39,19 +39,3 @@ variable "public_subnets" {
   default     = [""]
   description = ""
 }
-
-# variable "database_subnets" {
-#   type        = list(any)
-#   default     = [""]
-#   description = ""
-# }
-
-# variable "vpc_module_version" {
-#   default = "5.19.0"
-#   description = "Terraform registry's VPC module. Latest version as of 04/03/2025"
-# }
-
-# variable "vpc_module_version" {
-#   default = "3.18.1"
-#   description = "Terraform registry's VPC module. Latest version as of 04/03/2025"
-# }

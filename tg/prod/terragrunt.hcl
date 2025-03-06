@@ -6,11 +6,9 @@
 
 locals {
   # Automatically load account-level variables
-  # account_vars = read_terragrunt_config("account.hcl")
   account_vars = read_terragrunt_config("${get_parent_terragrunt_dir()}/account.hcl")
 
   # Automatically load environment-level variables
-  # environment_vars = read_terragrunt_config("env.hcl")
   environment_vars = read_terragrunt_config("${get_parent_terragrunt_dir()}/env.hcl")
   
   # Extract the variables we need for easy access

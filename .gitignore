@@ -1,0 +1,8 @@
+# Terraform directories and files
+**/.terraform/
+*.tfstate
+*.tfstate.*
+*.tfplan*
+
+# Terragrunt cache
+.terragrunt-cache/

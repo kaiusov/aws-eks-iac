@@ -45,11 +45,6 @@ inputs = {
   vpc_remote_state_key     = "aws/${local.env}/vpc/terraform.tfstate"
   remote_state_bucket      = "${local.owner}-${local.env}-terraform-state"
   whitelisted_ip_addresses = ["0.0.0.0/0"]
-  # min_size = 1
-  # max_size = 3
-  # desired_size = 1
-  # node_instance_type = ["t3.nano"]
-  # # node_instance_type = "t3.micro"
   eks_map_users = [
     {
       userarn  = "arn:aws:iam::${local.account_id}:user/${local.user}"
