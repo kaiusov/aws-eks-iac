@@ -221,4 +221,11 @@ clean up the s3 state bucket and dynamodb table
 ## Disaster Recovery and Backups
 - implement disaster recovery plan and backups according to budget and requirements
 
-Last but not least - Prod can't be prod unless there is a dev environment set up for development and testing. This repo would allow to spin up an identical dev environment with minimum effort.
+# Misc
+- Prod can't be prod unless there is a dev environment set up for development and testing. This repo would allow to spin up an identical dev environment with minimum effort.
+- I see that terragrunt changed the root terragrunt.hcl to root.hcl. This is something I would later address.
+```bash
+WARN   [prod/eks] Using `terragrunt.hcl` as the root of Terragrunt configurations is an anti-pattern, and no longer recommended. In a future version of Terragrunt, this will result in an error. You are advised to use a differently named file like `root.hcl` instead. For more information, see https://terragrunt.gruntwork.io/docs/migrate/migrating-from-root-terragrunt-hcl
+  ```
+
+
