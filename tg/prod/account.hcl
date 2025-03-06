@@ -1,4 +1,4 @@
 locals {
-  aws_account_id = "851725482350"
+  aws_account_id = ""
   user           = "programmatic"
 }
